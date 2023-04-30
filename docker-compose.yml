@@ -1,0 +1,10 @@
+version: '1'
+services:
+    login:
+        image: machripe/math-api-login
+        ports:
+            - 49161:3000
+    api:
+        image: machripe/math-api-server
+        ports:
+            - 49162:3000

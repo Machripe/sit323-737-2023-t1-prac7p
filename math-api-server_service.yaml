@@ -1,0 +1,70 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: math-api-server
+  namespace: default
+  uid: 4f91ad76-16e0-49b3-9851-303139921a1e
+  resourceVersion: '10544'
+  creationTimestamp: '2023-04-30T13:23:28Z'
+  labels:
+    k8s-app: math-api-server
+  managedFields:
+    - manager: dashboard
+      operation: Update
+      apiVersion: v1
+      time: '2023-04-30T13:23:28Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:labels:
+            .: {}
+            f:k8s-app: {}
+        f:spec:
+          f:allocateLoadBalancerNodePorts: {}
+          f:externalTrafficPolicy: {}
+          f:internalTrafficPolicy: {}
+          f:ports:
+            .: {}
+            k:{"port":49162,"protocol":"TCP"}:
+              .: {}
+              f:name: {}
+              f:port: {}
+              f:protocol: {}
+              f:targetPort: {}
+          f:selector: {}
+          f:sessionAffinity: {}
+          f:type: {}
+    - manager: kube-vpnkit-forwarder
+      operation: Update
+      apiVersion: v1
+      time: '2023-04-30T13:23:28Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:status:
+          f:loadBalancer:
+            f:ingress: {}
+      subresource: status
+spec:
+  ports:
+    - name: tcp-49162-3000-k7c85
+      protocol: TCP
+      port: 49162
+      targetPort: 3000
+      nodePort: 31197
+  selector:
+    k8s-app: math-api-server
+  clusterIP: 10.109.138.224
+  clusterIPs:
+    - 10.109.138.224
+  type: LoadBalancer
+  sessionAffinity: None
+  externalTrafficPolicy: Cluster
+  ipFamilies:
+    - IPv4
+  ipFamilyPolicy: SingleStack
+  allocateLoadBalancerNodePorts: true
+  internalTrafficPolicy: Cluster
+status:
+  loadBalancer:
+    ingress:
+      - hostname: localhost

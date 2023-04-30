@@ -1,0 +1,146 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: math-api-server
+  namespace: default
+  uid: 6ac9cc9a-742d-4389-be5a-b0afba698933
+  resourceVersion: '10559'
+  generation: 1
+  creationTimestamp: '2023-04-30T13:23:28Z'
+  labels:
+    k8s-app: math-api-server
+  annotations:
+    deployment.kubernetes.io/revision: '1'
+  managedFields:
+    - manager: dashboard
+      operation: Update
+      apiVersion: apps/v1
+      time: '2023-04-30T13:23:28Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:labels:
+            .: {}
+            f:k8s-app: {}
+        f:spec:
+          f:progressDeadlineSeconds: {}
+          f:replicas: {}
+          f:revisionHistoryLimit: {}
+          f:selector: {}
+          f:strategy:
+            f:rollingUpdate:
+              .: {}
+              f:maxSurge: {}
+              f:maxUnavailable: {}
+            f:type: {}
+          f:template:
+            f:metadata:
+              f:labels:
+                .: {}
+                f:k8s-app: {}
+              f:name: {}
+            f:spec:
+              f:containers:
+                k:{"name":"math-api-server"}:
+                  .: {}
+                  f:image: {}
+                  f:imagePullPolicy: {}
+                  f:name: {}
+                  f:resources: {}
+                  f:securityContext:
+                    .: {}
+                    f:privileged: {}
+                  f:terminationMessagePath: {}
+                  f:terminationMessagePolicy: {}
+              f:dnsPolicy: {}
+              f:restartPolicy: {}
+              f:schedulerName: {}
+              f:securityContext: {}
+              f:terminationGracePeriodSeconds: {}
+    - manager: kube-controller-manager
+      operation: Update
+      apiVersion: apps/v1
+      time: '2023-04-30T13:23:33Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:annotations:
+            .: {}
+            f:deployment.kubernetes.io/revision: {}
+        f:status:
+          f:availableReplicas: {}
+          f:conditions:
+            .: {}
+            k:{"type":"Available"}:
+              .: {}
+              f:lastTransitionTime: {}
+              f:lastUpdateTime: {}
+              f:message: {}
+              f:reason: {}
+              f:status: {}
+              f:type: {}
+            k:{"type":"Progressing"}:
+              .: {}
+              f:lastTransitionTime: {}
+              f:lastUpdateTime: {}
+              f:message: {}
+              f:reason: {}
+              f:status: {}
+              f:type: {}
+          f:observedGeneration: {}
+          f:readyReplicas: {}
+          f:replicas: {}
+          f:updatedReplicas: {}
+      subresource: status
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      k8s-app: math-api-server
+  template:
+    metadata:
+      name: math-api-server
+      creationTimestamp: null
+      labels:
+        k8s-app: math-api-server
+    spec:
+      containers:
+        - name: math-api-server
+          image: machripe/math-api-server
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: Always
+          securityContext:
+            privileged: false
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      securityContext: {}
+      schedulerName: default-scheduler
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600
+status:
+  observedGeneration: 1
+  replicas: 1
+  updatedReplicas: 1
+  readyReplicas: 1
+  availableReplicas: 1
+  conditions:
+    - type: Available
+      status: 'True'
+      lastUpdateTime: '2023-04-30T13:23:33Z'
+      lastTransitionTime: '2023-04-30T13:23:33Z'
+      reason: MinimumReplicasAvailable
+      message: Deployment has minimum availability.
+    - type: Progressing
+      status: 'True'
+      lastUpdateTime: '2023-04-30T13:23:33Z'
+      lastTransitionTime: '2023-04-30T13:23:28Z'
+      reason: NewReplicaSetAvailable
+      message: ReplicaSet "math-api-server-7998564d54" has successfully progressed.
